@@ -78,6 +78,15 @@ a {
   }
 }
 
+.select {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 2rem;
+  color: rgb(163, 163, 163);
+}
+
 .artwork-container {
   flex: 1;
   display: flex;

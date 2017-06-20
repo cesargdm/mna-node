@@ -19,10 +19,18 @@ const requireAuth = (nextState, replace) => {
   }
 }
 
+
+function Select(props) {
+  return (
+    <div className='select'>Selecciona una pieza</div>
+  )
+}
+
 const Routes = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <IndexRoute component={Select}/>
         <Route path=":piece_name" component={Artwork}/>
       </Route>
     </Router>

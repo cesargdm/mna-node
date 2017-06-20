@@ -7,7 +7,7 @@ function App (props) {
     <div className='app'>
       <Nav />
       <div className='body'>
-        {props.children}
+        { props.children }
       </div>
     </div>
   )
