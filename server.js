@@ -1,6 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const app = express()
+const compression = require('compression')
 const bodyParser = require('body-parser')
 const path = require('path')
 const helmet = require('helmet')
@@ -12,6 +13,8 @@ const PORT = process.env.PORT || 8080
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(compression({ filter: (req, res) => req.headers['x-no-compression'] ? false : compression.filter(req, res) }))
 
 app.use('/static',
   express.static(path.resolve('static'), {

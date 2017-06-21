@@ -82,7 +82,9 @@ class Artwork extends Component {
         <div
           className={`image ${this.state.imageActive ? 'active' : ''}`}
           style={{backgroundImage: `url(/static/img/pieces/${this.state.selectedPiece.name}.jpg)`}}
-          onClick={() => this.setState({imageActive: !this.state.imageActive})}></div>
+          onClick={() => this.setState({imageActive: !this.state.imageActive})}>
+          <p>{this.state.selectedPiece.title}</p>
+        </div>
         <div className='watson'>
           <div className='chat' ref={(div) => { this.chat = div }}>
             {

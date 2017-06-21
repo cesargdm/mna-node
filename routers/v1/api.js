@@ -5,6 +5,13 @@ const router = express.Router()
 
 const WatsonServices = require('./WatsonServices')
 
+router.route('/login')
+.post((req, res) => {
+
+  
+
+})
+
 router.route('/talk-answer')
 .post((req, res) => {
 

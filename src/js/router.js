@@ -8,13 +8,21 @@ import appReducer from './reducers'
 const store = createStore(appReducer)
 
 import App from './App'
+import Login from './containers/Login'
 import Artwork from './containers/Artwork'
 
+function isLoggedIn() {
+  const email = localStorage.getItem('email')
+  if (!email) {
+    return false
+  }
+  return true
+}
+
 const requireAuth = (nextState, replace) => {
-  if (!isAuthenticated()) {
+  if (!isLoggedIn()) {
     replace({
-      pathname: '/',
-      state: { nextPathname: nextState.location.pathname }
+      pathname: '/login'
     })
   }
 }
@@ -29,9 +37,10 @@ function Select(props) {
 const Routes = (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Select}/>
-        <Route path=":piece_name" component={Artwork}/>
+      <Route path="/login" component={Login} />
+      <Route path="/" component={App} onEnter={requireAuth}>
+        <IndexRoute component={Select} />
+        <Route path=":piece_name" component={Artwork} />
       </Route>
     </Router>
   </Provider>
