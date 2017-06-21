@@ -21,7 +21,6 @@ class Artwork extends Component {
     this.questionChange = this.questionChange.bind(this)
     this.getSelectedPiece = this.getSelectedPiece.bind(this)
     this.postQuestion = this.postQuestion.bind(this)
-
   }
 
   getSelectedPiece(piece_name) {
@@ -29,13 +28,10 @@ class Artwork extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     const nextArtwork = nextProps.params.piece_name
-    const nextChat = nextProps.params.chatHistory
 
     if (nextArtwork != this.state.piece) {
-
-      this.props.dispatch(resetChat({}))
+      this.props.dispatch(resetChat())
 
       this.setState({
         piece: nextArtwork,
@@ -45,22 +41,22 @@ class Artwork extends Component {
   }
 
   postQuestion(event) {
-
     event.preventDefault()
 
     const question = this.state.question
     const workspace_id = this.state.selectedPiece.workspace_id
 
+    this.props.dispatch(addMessage({ text: question }))
     this.setState({
       question: ''
-    })
-
-    this.props.dispatch(addMessage({ text: question }))
+    }, () => this.chat.scrollTop = this.chat.scrollHeight)
 
     Watson.ask(question, workspace_id)
     .then(response => {
       const answer = response.data.answer
+      if (answer == '' || !answer) return // Don't add message if there's an empty message
       this.props.dispatch(addMessage({ text: answer, answer: true }))
+      this.chat.scrollTop = this.chat.scrollHeight // Scroll to bottom on message add
     })
     .catch(error => {
       console.log(error)
@@ -88,7 +84,7 @@ class Artwork extends Component {
           style={{backgroundImage: `url(/static/img/pieces/${this.state.selectedPiece.name}.jpg)`}}
           onClick={() => this.setState({imageActive: !this.state.imageActive})}></div>
         <div className='watson'>
-          <div className='chat'>
+          <div className='chat' ref={(div) => { this.chat = div }}>
             {
               this.props.chatHistory.map((element, index) =>
                 <div
@@ -124,7 +120,7 @@ class Artwork extends Component {
               <input
                 onClick={this.postQuestion}
                 type="submit"
-                value="Enviar pregunta"
+                value="Enviar"
                 autoCorrect="off"
                 autoComplete="off"
               />
