@@ -9,9 +9,10 @@
 
 # Install
 ```
-> yarn install
+> yarn install  #or npm install
 ```
-or
+
+# Build
 ```
-> npm install
+> gulp dist
 ```
