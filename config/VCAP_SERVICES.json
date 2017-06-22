@@ -1,0 +1,34 @@
+{
+  "dashDB": [
+    {
+      "credentials": {
+        "port": 50000,
+        "db": "BLUDB",
+        "username": "dash10624",
+        "ssljdbcurl": "jdbc:db2://dashdb-entry-yp-dal09-08.services.dal.bluemix.net:50001/BLUDB:sslConnection=true;",
+        "host": "dashdb-entry-yp-dal09-08.services.dal.bluemix.net",
+        "https_url": "https://dashdb-entry-yp-dal09-08.services.dal.bluemix.net:8443",
+        "dsn": "DATABASE=BLUDB;HOSTNAME=dashdb-entry-yp-dal09-08.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=dash10624;PWD=_U1aLt2ydH_U;",
+        "hostname": "dashdb-entry-yp-dal09-08.services.dal.bluemix.net",
+        "jdbcurl": "jdbc:db2://dashdb-entry-yp-dal09-08.services.dal.bluemix.net:50000/BLUDB",
+        "ssldsn": "DATABASE=BLUDB;HOSTNAME=dashdb-entry-yp-dal09-08.services.dal.bluemix.net;PORT=50001;PROTOCOL=TCPIP;UID=dash10624;PWD=_U1aLt2ydH_U;Security=SSL;",
+        "uri": "db2://dash10624:_U1aLt2ydH_U@dashdb-entry-yp-dal09-08.services.dal.bluemix.net:50000/BLUDB",
+        "password": "_U1aLt2ydH_U"
+      },
+      "syslog_drain_url": null,
+      "label": "dashDB",
+      "provider": null,
+      "plan": "Entry",
+      "name": "dashDB for Analytics-ub",
+      "tags": [
+        "big_data",
+        "ibm_created",
+        "ibm_dedicated_public",
+        "db2",
+        "sqldb",
+        "purescale",
+        "sql"
+      ]
+    }
+  ]
+}

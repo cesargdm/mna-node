@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Message from '../components/Message'
 import { connect } from 'react-redux'
-import { addMessage, resetChat } from '../actions'
+import { addMessage } from '../actions'
 
 import Watson from '../Watson'
 
@@ -24,6 +25,14 @@ class Artwork extends Component {
   }
 
   getSelectedPiece(piece_name) {
+    if (!this.state) {
+      const workspace_id = this.props.pieces.filter(piece => piece.name === piece_name)[0].workspace_id
+      this.props.dispatch(addMessage({
+        text: 'A poco más de medio siglo de creación, el Museo Nacional de Antropología es reconocido como uno de los recintos más emblemáticos para la salvaguarda del legado indígena de México. Durante este recorrido podré auxiliarte con información acerca de: Mural de Rufino Tamayo, Piedra del Sol, Coatlicue, Penacho de Moctezuma, Dintel 26, Tumba de Pakal y Chac Mool',
+        answer: true,
+        workspace_id
+      }))
+    }
     return this.props.pieces.filter(piece => piece.name === piece_name)[0]
   }
 
@@ -31,8 +40,6 @@ class Artwork extends Component {
     const nextArtwork = nextProps.params.piece_name
 
     if (nextArtwork != this.state.piece) {
-      this.props.dispatch(resetChat())
-
       this.setState({
         piece: nextArtwork,
         selectedPiece: this.getSelectedPiece(nextArtwork)
@@ -46,7 +53,7 @@ class Artwork extends Component {
     const question = this.state.question
     const workspace_id = this.state.selectedPiece.workspace_id
 
-    this.props.dispatch(addMessage({ text: question }))
+    this.props.dispatch(addMessage({ text: question, answer: false, workspace_id: this.state.selectedPiece.workspace_id }))
     this.setState({
       question: ''
     }, () => this.chat.scrollTop = this.chat.scrollHeight)
@@ -55,7 +62,7 @@ class Artwork extends Component {
     .then(response => {
       const answer = response.data.answer
       if (answer == '' || !answer) return // Don't add message if there's an empty message
-      this.props.dispatch(addMessage({ text: answer, answer: true }))
+      this.props.dispatch(addMessage({ text: answer, answer: true, workspace_id: this.state.selectedPiece.workspace_id }))
       this.chat.scrollTop = this.chat.scrollHeight // Scroll to bottom on message add
     })
     .catch(error => {
@@ -77,6 +84,9 @@ class Artwork extends Component {
   }
 
   render() {
+
+    const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
+
     return (
       <div className='dashboard'>
         <div
@@ -88,25 +98,11 @@ class Artwork extends Component {
         <div className='watson'>
           <div className='chat' ref={(div) => { this.chat = div }}>
             {
-              this.props.chatHistory.map((element, index) =>
-                <div
+              filteredMessages.map((element, index) =>
+                <Message
                   key={index}
-                  onClick={() => {}}
-                  className={element.answer ? 'answer' : 'question'}
-                  >
-                  { element.text }
-                  {
-                    element.answer ?
-                    <div className='rater'>
-                      <p>Califica esta respuesta</p>
-                      <div className="rate-container">
-                        <div className='good' onClick={() => this.rateAnswer(element.id, true)}></div>
-                        <div className='bad' onClick={() => this.rateAnswer(element.id, false)}></div>
-                      </div>
-                    </div>
-                    : null
-                  }
-                </div>
+                  element={element}
+                />
               )
             }
           </div>

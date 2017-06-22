@@ -18,13 +18,13 @@ app.use(compression({ filter: (req, res) => req.headers['x-no-compression'] ? fa
 
 app.use('/static',
   express.static(path.resolve('static'), {
-    maxAge: 1209600000
+    // maxAge: 1209600000
   })
 )
 
 app.use('/dist',
   express.static(path.resolve('dist'), {
-    maxAge: 604800000
+    // maxAge: 604800000
   })
 )
 

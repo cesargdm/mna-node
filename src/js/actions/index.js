@@ -9,7 +9,8 @@ export function addMessage(message) {
     type: 'ADD_MESSAGE',
     message: {
       text: message.text,
-      answer: message.answer
+      answer: message.answer,
+      workspace_id: message.workspace_id
     }
   }
 }

@@ -54,12 +54,11 @@ function pieces(state = initialPieces, action) {
 
 function chatHistory(chat = [], action) {
   switch (action.type) {
-    case 'RESET_CHAT':
-      return []
     case 'ADD_MESSAGE':
       return [...chat, {
         text: action.message.text,
-        answer: action.message.answer
+        answer: action.message.answer,
+        workspace_id: action.message.workspace_id
       }]
     default:
       return chat
