@@ -1,7 +1,7 @@
 module.exports = {
   talk: {
-    user: 'ce8d54c2-cd46-4f8d-87b9-293409dc75c9',
-    pass: 'Cqdfyo78tpR8'
+    user: '8e113478-787f-49d9-b37f-246cdedc13f3',
+    pass: 'LWTKHxEW5Mp4'
   },
   answer: {
     user: '71e57c17-aee0-4d98-a4c5-f05fd72c45f3',
