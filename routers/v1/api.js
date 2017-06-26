@@ -9,7 +9,7 @@ const WatsonServices = require('./WatsonServices')
 router.route('/login')
 .post((req, res) => {
 
-  // TODO LOGIN
+  // BAD LOGIN
   // var query = "SELECT count(distinct(OVERALL)) AS ALLPOSITION, COUNT(*) AS TOTAL from PSD_REPORT"
   // db.open().then(function(conn){
   //   db.execute(conn, query).then(function(data){
@@ -20,6 +20,9 @@ router.route('/login')
   //     db.close(conn)
   //   })
   // })
+  //
+
+  const { name, email } = req.body
 
   const query = "INSERT INTO "
   db.open()
