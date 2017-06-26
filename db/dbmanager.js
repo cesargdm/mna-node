@@ -1,19 +1,12 @@
 const ibmdb = require('ibm_db')
 const q = require('q')
-const service = require('../config/VCAP_SERVICES.json')
+var services = require('../config/VCAP_SERVICES.json')
 
 //Vcaps
-const connString = ''
-const services = undefined
+var connString = ''
+// const services = undefined
 
-// if (process.env.VCAP_SERVICES) {
-//    services = JSON.parse(process.env.VCAP_SERVICES)
-// } else {
-// 	var fs = require('fs')
-// 	// services = JSON.parse(fs.readFileSync('./../config/VCAP_SERVICES.json', 'utf8'))
-// }
-
-if (services){
+if (services) {
   // look for a service starting with 'sqldb'
   for (var svcName in services) {
     if (svcName.match(/^dashDB/)) {
@@ -24,13 +17,16 @@ if (services){
 }
 
 const DataBase = {
-	open : function(){
+	open : function() {
 		var deferred = q.defer()
-
-		ibmdb.open(connString, function(err,conn) {
-		  if (err){
-			deferred.reject(err)
-		  }else{
+    console.log('Openning connection')
+    console.log('connString', connString)
+		ibmdb.open(connString, (error,conn) => {
+		  if (error){
+        console.log('GOT ERROR',error)
+			deferred.reject(error)
+		  } else{
+        console.log('GOT CONNECTION', conn)
 		  	 deferred.resolve(conn)
 		  }
 		})
@@ -38,7 +34,7 @@ const DataBase = {
 	  return deferred.promise
 	},
 
-	close : function(conn){
+	close : function(conn) {
 
 		var deferred = q.defer()
 		conn.close(function () {

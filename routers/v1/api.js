@@ -9,35 +9,38 @@ const WatsonServices = require('./WatsonServices')
 router.route('/login')
 .post((req, res) => {
 
-  // BAD LOGIN
-  // var query = "SELECT count(distinct(OVERALL)) AS ALLPOSITION, COUNT(*) AS TOTAL from PSD_REPORT"
-  // db.open().then(function(conn){
-  //   db.execute(conn, query).then(function(data){
-  //     res.json(data)
-  //     db.close(conn)
-  //   }, function(err){
-  //     res.json(err)
-  //     db.close(conn)
-  //   })
-  // })
-  //
-
   const { name, email } = req.body
-
-  const query = "INSERT INTO "
+  
+  // BAD LOGIN
+  var query = "SELECT * FROM users"
   db.open()
   .then((conn) => {
-    return db.execute(conn, query)
+    console.log('CONN',conn)
+    db.execute(conn, query)
+    .then((data) => {
+      res.json(data)
+      db.close(conn)
+    }, function(err){
+      res.json(err)
+      db.close(conn)
+    })
   })
-  .then((data) => {
-    console.log(data)
-    res.json(data)
-    db.close(conn)
-  })
-  .catch((err) => {
-    res.json(err)
-    db.close(conn)
-  })
+
+  // const query = "INSERT INTO "
+  // db.open()
+  // .then((conn) => {
+  //   return db.execute(conn, query)
+  // })
+  // .then((data) => {
+  //   console.log(data)
+  //   res.json(data)
+  //   db.close(conn)
+  // })
+  // .catch((error) => {
+  //   console.log(error)
+  //   res.json(error)
+  //   db.close(conn)
+  // })
 
 })
 
