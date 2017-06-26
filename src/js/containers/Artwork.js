@@ -22,6 +22,7 @@ class Artwork extends Component {
     this.questionChange = this.questionChange.bind(this)
     this.getSelectedPiece = this.getSelectedPiece.bind(this)
     this.postQuestion = this.postQuestion.bind(this)
+    this.rateAnswer = this.rateAnswer.bind(this)
   }
 
   getSelectedPiece(piece_name) {
@@ -82,8 +83,22 @@ class Artwork extends Component {
     })
   }
 
-  rateAnswer(answer_id, rate) {
-    console.log(`Rated ${answer_id} with ${rate}`)
+  rateAnswer(answer, rate, index) {
+
+    const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
+
+    const email = localStorage.getItem('email')
+    const question = filteredMessages[index-1].text
+    const workspace_id = this.state.selectedPiece.workspace_id
+
+    Watson.rate(email, question, answer, rate, workspace_id)
+    .then(response => {
+      alert('Gracias por tu ayuda')
+    })
+    .catch(error => {
+      alert('Inténtalo de nuevo más tarde')
+    })
+
   }
 
   render() {
@@ -103,6 +118,8 @@ class Artwork extends Component {
             {
               filteredMessages.map((element, index) =>
                 <Message
+                  index={index}
+                  onRate={this.rateAnswer}
                   key={index}
                   element={element}
                 />

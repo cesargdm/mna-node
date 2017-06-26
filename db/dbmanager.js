@@ -50,7 +50,7 @@ const DataBase = {
 		    	deferred.reject(err)
 		    }
 		    else {
-		    	deferred.resolve(data)
+		    	deferred.resolve(conn, data)
 		    }
 		})
 

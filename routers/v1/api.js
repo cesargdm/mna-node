@@ -6,44 +6,6 @@ const router = express.Router()
 
 const WatsonServices = require('./WatsonServices')
 
-router.route('/login')
-.post((req, res) => {
-
-  const { name, email } = req.body
-  
-  // BAD LOGIN
-  var query = "SELECT * FROM users"
-  db.open()
-  .then((conn) => {
-    console.log('CONN',conn)
-    db.execute(conn, query)
-    .then((data) => {
-      res.json(data)
-      db.close(conn)
-    }, function(err){
-      res.json(err)
-      db.close(conn)
-    })
-  })
-
-  // const query = "INSERT INTO "
-  // db.open()
-  // .then((conn) => {
-  //   return db.execute(conn, query)
-  // })
-  // .then((data) => {
-  //   console.log(data)
-  //   res.json(data)
-  //   db.close(conn)
-  // })
-  // .catch((error) => {
-  //   console.log(error)
-  //   res.json(error)
-  //   db.close(conn)
-  // })
-
-})
-
 router.route('/talk-answer')
 .post((req, res) => {
 
@@ -84,7 +46,6 @@ router.route('/talk')
     console.log('RESPONSE')
   })
   .on('error', (error) => {
-    console.log('ERROR')
     return res.status(500).json({ error })
   })
   .pipe(res)
@@ -92,13 +53,37 @@ router.route('/talk')
 
 router.route('/rate-answer')
 .post((req, res) => {
-  const { question, answer, rate, user } = req.body
+  const { email, question, answer, rate, workspace_id } = req.body
 
-  if (!user.email) {
+  if (!email) {
     return res.status(400)
   }
 
-  // TODO save all
+  if (email) {
+    const now = new Date()
+    var month = `${now.getUTCMonth()}`
+    month.split('').length < 2 ? month = `0${month}` : null
+    const date = `${now.getUTCFullYear()}-${month}-${now.getUTCDate()} ${now.getUTCHours()}:${now.getUTCMinutes()}:${now.getUTCSeconds()}`
+
+    const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answer}',${rate},'${date}', '${workspace_id}')`
+    console.log(query)
+    db.open()
+    .then((conn) => {
+      return db.execute(conn, query)
+    })
+    .then((conn, data) => {
+      console.log('CONN AND DATA')
+      console.log(conn, data)
+      res.status(201).json({ message: 'Thanks for your feedback', data })
+      db.close(conn)
+    })
+    .catch((error) => {
+      console.log('ERROR', error)
+      res.status(500).json({error})
+      db.close(conn)
+    })
+
+  }
 
 })
 
@@ -107,11 +92,6 @@ router.route('/answer')
 
   const { question, conversation_id, workspace_id } = req.body
   const { user } = req.body
-
-  if (user && user.email) {
-    // TODO save question, workspace_id and answer to DB
-    const date = new Date.now()
-  }
 
   WatsonServices.answer(question, conversation_id, workspace_id)
   .then(response => {
