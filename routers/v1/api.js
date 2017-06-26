@@ -107,7 +107,7 @@ router.route('/answer')
 
   if (user && user.email) {
     // TODO save question, workspace_id and answer to DB
-
+    const date = new Date.now()
   }
 
   WatsonServices.answer(question, conversation_id, workspace_id)

@@ -27,15 +27,11 @@ const DataBase = {
 	open : function(){
 		var deferred = q.defer()
 
-		logger.info("[open]")
-
 		ibmdb.open(connString, function(err,conn) {
 		  if (err){
 			deferred.reject(err)
-			logger.error("[open] conn.open error " + err)
 		  }else{
 		  	 deferred.resolve(conn)
-		  	 logger.info("[open] conn.open done")
 		  }
 		})
 
@@ -43,12 +39,10 @@ const DataBase = {
 	},
 
 	close : function(conn){
-		logger.info('[close]')
 
 		var deferred = q.defer()
 		conn.close(function () {
 			deferred.resolve()
-		    logger.info('[close] conn.close done')
 		})
 	  return deferred.promise
 	},
@@ -57,11 +51,9 @@ const DataBase = {
 		var deferred = q.defer()
 		conn.query(query, params, function (err, data) {
 		    if (err){
-		    	logger.info("[execute] conn.query error: " + JSON.stringify(err));
 		    	deferred.reject(err)
 		    }
 		    else {
-		    	logger.info("[execute] conn.query done")
 		    	deferred.resolve(data)
 		    }
 		})
@@ -74,18 +66,15 @@ const DataBase = {
 		var deferred = q.defer()
 		conn.prepare(query, function (err, stmt) {
 		    if (err) {
-		    	logger.error("prepare] conn.prepare error: "+JSON.stringify(err));
 		    	deferred.reject(err);
 		      	conn.closeSync();
 		    }
 
 		    stmt.execute(params, function (err, result) {
 		    	if (err){
-			    	logger.error("prepare] stmt.execute err: "+JSON.stringify(err));
 			    	deferred.reject(err);
 			    }
 			    else {
-			    	logger.info("prepare] stmt.execute done ");
 			    	result.closeSync();
 			    	deferred.resolve(result);
 			    }
