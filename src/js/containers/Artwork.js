@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Message from '../components/Message'
 import { connect } from 'react-redux'
-import { addMessage } from '../actions'
+import { addMessage, reviewAnswer } from '../actions'
 
 import Watson from '../Watson'
 
@@ -93,6 +93,7 @@ class Artwork extends Component {
 
     Watson.rate(email, question, answer, rate, workspace_id)
     .then(response => {
+      this.props.dispatch(reviewAnswer(index))
       alert('Gracias por tu ayuda')
     })
     .catch(error => {
@@ -122,6 +123,7 @@ class Artwork extends Component {
                   onRate={this.rateAnswer}
                   key={index}
                   element={element}
+                  reviewed={element.reviewed}
                 />
               )
             }

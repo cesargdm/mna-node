@@ -4,6 +4,14 @@ export function resetChat() {
   }
 }
 
+export function reviewAnswer(index) {
+  return {
+    type: 'REVIEW_ANSWER',
+    index
+  }
+}
+
+
 export function addMessage(message) {
   return {
     type: 'ADD_MESSAGE',

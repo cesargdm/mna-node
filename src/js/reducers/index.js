@@ -42,7 +42,31 @@ const initialPieces = [
     title: 'Mural Dualidad',
     location: 'General',
     workspace_id: '6670d9ff-1ec4-4751-9971-27e45f6912b4'
-  }
+  },
+  {
+    name: 'coyolxauhqui',
+    title: 'Coyolxauhqui',
+    location: 'Sala Mexica',
+    workspace_id: 'd5281153-1fc5-453f-8ed5-1e75f4b52a0e'
+  },
+  {
+    name: 'ocelocuauhxicalli',
+    title: 'Ocelocuauhxicalli',
+    location: 'Sala Mexica',
+    workspace_id: '011184d0-4399-42e0-90ee-7a2cc25460b3'
+  },
+  {
+    name: 'piedra-tizoc',
+    title: 'Piedra de Tizoc',
+    location: 'Sala Maya',
+    workspace_id: 'f1b8ebe0-d73d-4b17-88fe-9349d433b906'
+  },
+  {
+    name: 'friso-estucado',
+    title: 'Friso Estucado',
+    location: 'Sala Mexica',
+    workspace_id: '5919bce7-d2b6-43ae-b215-ca6b0d156b9f'
+  },
 ]
 
 function pieces(state = initialPieces, action) {
@@ -60,6 +84,10 @@ function chatHistory(chat = [], action) {
         answer: action.message.answer,
         workspace_id: action.message.workspace_id
       }]
+    case 'REVIEW_ANSWER':
+      return chat.map((message, index) => (index === action.index) ? Object.assign({}, message, {
+        reviewed: true
+      }) : message )
     default:
       return chat
   }
