@@ -27,11 +27,14 @@ class Artwork extends Component {
   getSelectedPiece(piece_name) {
     if (!this.state) {
       const workspace_id = this.props.pieces.filter(piece => piece.name === piece_name)[0].workspace_id
-      this.props.dispatch(addMessage({
-        text: 'A poco más de medio siglo de creación, el Museo Nacional de Antropología es reconocido como uno de los recintos más emblemáticos para la salvaguarda del legado indígena de México. Durante este recorrido podré auxiliarte con información acerca de: Mural de Rufino Tamayo, Piedra del Sol, Coatlicue, Penacho de Moctezuma, Dintel 26, Tumba de Pakal y Chac Mool',
-        answer: true,
-        workspace_id
-      }))
+      setTimeout(() => {
+        this.props.dispatch(addMessage({
+          text: 'A poco más de medio siglo de creación, el Museo Nacional de Antropología es reconocido como uno de los recintos más emblemáticos para la salvaguarda del legado indígena de México. Durante este recorrido podré auxiliarte con información acerca de: Mural de Rufino Tamayo, Piedra del Sol, Coatlicue, Penacho de Moctezuma, Dintel 26, Tumba de Pakal y Chac Mool',
+          answer: true,
+          workspace_id
+        }))
+      }, 1000)
+
     }
     return this.props.pieces.filter(piece => piece.name === piece_name)[0]
   }
