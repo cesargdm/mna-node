@@ -31,7 +31,9 @@ a {
 
 .nav {
   display: flex;
+  flex-shrink: 0;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   padding: 10px 0;
   border-bottom: 5px solid #32a8d4;
   background: #313131;
@@ -142,6 +144,7 @@ a {
   flex-grow: 1;
   .chat {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     padding: 20px;
     flex: 1;
     display: flex;
@@ -169,17 +172,20 @@ a {
   }
 }
 
-.ask-container form {
+.ask-container {
   flex-shrink: 0;
-  height: 52px;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  // border-top: 1px solid $lighterGray;
-  // border-bottom: 1px solid $lighterGray;
-  input[type="text"] {
-    margin-right: 10px;
-    flex-grow: 1;
+  form {
+    flex-shrink: 0;
+    height: 52px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    // border-top: 1px solid $lighterGray;
+    // border-bottom: 1px solid $lighterGray;
+    input[type="text"] {
+      margin-right: 10px;
+      flex-grow: 1;
+    }
   }
 }
 
@@ -220,12 +226,14 @@ input[type="submit"] {
   color: #32a8d4;
   font-weight: 600;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 input[type="text"], input[type="email"] {
   outline: none;
   border-radius: 16px;
   padding: 7px 12px;
   border: 1px solid $lighterGray;
+  -webkit-appearance: none;
 }
 
 
