@@ -143,7 +143,7 @@ a {
   flex-direction: column;
   flex-grow: 1;
   .chat {
-    overflow-y: scroll;
+    overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     padding: 20px;
     flex: 1;
