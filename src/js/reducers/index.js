@@ -82,12 +82,21 @@ function chatHistory(chat = [], action) {
       return [...chat, {
         text: action.message.text,
         answer: action.message.answer,
-        workspace_id: action.message.workspace_id
+        workspace_id: action.message.workspace_id,
+        unReviewable: action.message.unReviewable
       }]
     case 'REVIEW_ANSWER':
-      return chat.map((message, index) => (index === action.index) ? Object.assign({}, message, {
-        reviewed: true
-      }) : message )
+      let workSpaceChat = chat
+      .filter(message => message.workspace_id == action.workspace_id)
+      .map((message, index) => index == action.index ?  Object.assign({}, message, { reviewed: true }) : message )
+
+      let filteredChat = chat.filter(message => message.workspace_id !== action.workspace_id)
+
+      return [
+        ...filteredChat,
+        ...workSpaceChat
+      ]
+
     default:
       return chat
   }

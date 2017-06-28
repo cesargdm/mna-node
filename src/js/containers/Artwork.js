@@ -31,6 +31,7 @@ class Artwork extends Component {
       setTimeout(() => {
         this.props.dispatch(addMessage({
           text: 'A poco más de medio siglo de creación, el Museo Nacional de Antropología es reconocido como uno de los recintos más emblemáticos para la salvaguarda del legado indígena de México. Durante este recorrido podré auxiliarte con información acerca de: Mural de Rufino Tamayo, Piedra del Sol, Coatlicue, Penacho de Moctezuma, Dintel 26, Tumba de Pakal y Chac Mool',
+          unReviewable: true,
           answer: true,
           workspace_id
         }))
@@ -85,6 +86,7 @@ class Artwork extends Component {
 
   rateAnswer(answer, rate, index) {
 
+    console.log('INDEX', index)
     const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
 
     const email = localStorage.getItem('email')
@@ -93,8 +95,7 @@ class Artwork extends Component {
 
     Watson.rate(email, question, answer, rate, workspace_id)
     .then(response => {
-      this.props.dispatch(reviewAnswer(index))
-      alert('Gracias por tu ayuda')
+      this.props.dispatch(reviewAnswer(index, workspace_id))
     })
     .catch(error => {
       alert('Inténtalo de nuevo más tarde')
@@ -105,6 +106,7 @@ class Artwork extends Component {
   render() {
 
     const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
+    console.log(filteredMessages)
 
     return (
       <div className='dashboard'>
@@ -124,6 +126,7 @@ class Artwork extends Component {
                   key={index}
                   element={element}
                   reviewed={element.reviewed}
+                  unReviewable={element.unReviewable}
                 />
               )
             }

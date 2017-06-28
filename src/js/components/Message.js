@@ -4,10 +4,12 @@ function Message(props) {
   return (
     <div className={props.element.answer ? 'answer' : 'question'} >
       { props.element.text }
+      { props.unReviewable}
       {
-        props.element.answer ?
+        (props.element.answer && !props.unReviewable) ?
         <div className='rater'>
           <p>Califica esta respuesta</p>
+
           {
             props.reviewed
             ? <span><strong>Gracias por tu ayuda</strong></span>

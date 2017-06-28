@@ -79,7 +79,11 @@ router.route('/rate-answer')
 
     const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
 
+    answer.split('\'').join('`')
+
     const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answer}',${rate},'${date}', '${workspace_id}')`
+
+    console.log('\nQUERY:', query)
 
     db.open()
     .then((conn) => {
