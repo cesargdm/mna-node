@@ -16,17 +16,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(compression({ filter: (req, res) => req.headers['x-no-compression'] ? false : compression.filter(req, res) }))
 
-app.use('/static',
-  express.static(path.resolve('static'), {
-    maxAge: 1209600000
-  })
-)
+app.use('/static', express.static(path.resolve('static'), {
+  maxAge: 1209600000
+}))
 
-app.use('/dist',
-  express.static(path.resolve('dist'), {
-    maxAge: 86400000
-  })
-)
+app.use('/manifest.json', express.static(path.resolve('manifest.json'), {
+  maxAge: 86400000
+}))
+
+app.use('/dist', express.static(path.resolve('dist'), {
+  maxAge: 86400000
+}))
 
 app.use('/v1', API_V1)
 

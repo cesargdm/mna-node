@@ -1,0 +1,19 @@
+{
+  "short_name": "IBM+MNA",
+  "name": "IBM + MNA",
+  "start_url": "/",
+  "icons": [{
+    "src": "/static/img/icons/app-icon.png",
+    "type": "image/png",
+    "sizes": "144x144"
+  },
+  {
+    "src": "/static/img/icons/app-icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "background_color": "#2bcafc",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2bcafc"
+}

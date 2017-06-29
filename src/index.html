@@ -11,8 +11,20 @@
     <meta name="theme-color" content="#18c8ff">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/dist/master.min.css">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
   </body>
-  <script src="/dist/bundle.min.js" charset="utf-8" type="text/javascript"></script>
+  <script src="/dist/index-bundle.min.js" charset="utf-8" type="text/javascript"></script>
+  <script type="text/javascript">
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/dist/service-worker-bundle.min.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      })
+    })
+  }
+  </script>
 </html>

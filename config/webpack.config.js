@@ -1,8 +1,9 @@
 const webpack = require('webpack')
+const path = require('path')
 
 const config = {
   output: {
-    filename: 'bundle.min.js'
+    filename: '[name]-bundle.min.js'
   },
   plugins: [
     new webpack.DefinePlugin({

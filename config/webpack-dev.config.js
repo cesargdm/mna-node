@@ -1,8 +1,9 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   output: {
-    filename: 'bundle.min.js'
+    filename: '[name]-bundle.min.js'
   },
   devtool: 'eval',
   plugins: [

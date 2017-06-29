@@ -8,6 +8,7 @@ const webpack = require('webpack')
 const path = require('path')
 const webpackConfig = require(path.resolve('config/webpack.config.js'))
 const webpackConfigDev = require(path.resolve('config/webpack-dev.config.js'))
+const named = require('vinyl-named')
 
 // Possible duplicate?
 gulp.task('sass', () =>
@@ -39,7 +40,8 @@ gulp.task('webpack', () =>
 
 // Possible duplicate?
 gulp.task('webpackDev', () =>
-  gulp.src(path.resolve('src/js/index.js'))
+  gulp.src([path.resolve('src/js/index.js'), path.resolve('src/js/service-worker.js')])
+      .pipe(named())
       .pipe(sourcemaps.init())
       .pipe(webpackStream(webpackConfigDev, webpack)) // Create sourcemaps for better debbuging
       .on('error', function handleError() {
