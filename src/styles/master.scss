@@ -11,22 +11,13 @@ $lighterGray:  #ccc;
 body {
   font-family: Helvetica, sans-serif;
 }
-html, body, #root, .app {
-  width: 100%;
-  height: 100%;
-}
+// html, body, #root, .app {
+//   width: 100%;
+//   height: 100%;
+// }
 
 a {
   text-decoration: none;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-}
-.body {
-  display: flex;
-  flex: 1;
 }
 
 .nav {
@@ -37,6 +28,11 @@ a {
   padding: 10px 0;
   border-bottom: 5px solid #32a8d4;
   background: #313131;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   a {
     opacity: 0.6;
   }
@@ -66,7 +62,6 @@ a {
       background-size: cover;
       background-position: center;
       border-radius: 50%;
-      z-index: 10;
     }
     span {
       white-space: nowrap;
@@ -87,6 +82,7 @@ a {
   justify-content: center;
   display: flex;
   font-size: 2rem;
+  padding-top: 150px;
   color: rgb(163, 163, 163);
 }
 
@@ -102,18 +98,13 @@ a {
   }
 }
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  position: relative;
   .image {
     cursor: pointer;
-    position: absolute;
-    top: 0;
+    position: fixed;
     right: 0;
-    max-width: 200px;
-    width: 200px;
-    max-height: 123px;
+    max-width: 150px;
+    width: 242px;
+    max-height: 92px;
     height: 123px;
     background: $lighterGray;
     margin: 15px;
@@ -124,6 +115,8 @@ a {
     background-position: center;
     transition: ease 0.3s;
     display: flex;
+    top: 103px;
+    z-index: 101;
     p {
       margin-top: auto;
       font-size: 1.5rem;
@@ -140,16 +133,13 @@ a {
   }
 }
 .watson {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
   .chat {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
     padding: 20px;
-    flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 72px;
+    padding-top: 113px;
     > div:first-child {
       margin-top: auto;
     }
@@ -175,6 +165,14 @@ a {
 
 .ask-container {
   flex-shrink: 0;
+  position: fixed;
+  height: 54px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 100;
+  border-top: 1px solid #dedede;
   form {
     flex-shrink: 0;
     height: 52px;
@@ -257,8 +255,14 @@ input[type="text"], input[type="email"] {
 }
 
 @media (min-width: 600px) {
+  .ask-container {
+    height: 72px;
+  }
+  .chat {
+    padding-bottom: 92px;
+  }
   .ask-container form {
-    height: 92px;
-    padding: 30px 20px;
+    height: 72px;
+    padding: 20px;
   }
 }

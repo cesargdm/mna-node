@@ -61,14 +61,14 @@ class Artwork extends Component {
     this.props.dispatch(addMessage({ text: question, answer: false, workspace_id: this.state.selectedPiece.workspace_id }))
     this.setState({
       question: ''
-    }, () => this.chat.scrollTop = this.chat.scrollHeight)
+    }, () => window.scrollTo(0,document.body.scrollHeight))
 
     Watson.ask(question, workspace_id)
     .then(response => {
       const answer = response.data.answer
       if (answer == '' || !answer) return // Don't add message if there's an empty message
       this.props.dispatch(addMessage({ text: answer, answer: true, workspace_id: this.state.selectedPiece.workspace_id }))
-      this.chat.scrollTop = this.chat.scrollHeight // Scroll to bottom on message add
+      window.scrollTo(0,document.body.scrollHeight)
     })
     .catch(error => {
       console.log(error)
@@ -105,7 +105,7 @@ class Artwork extends Component {
     const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
 
     return (
-      <div className='dashboard'>
+      <div className='dashboard' ref={(div) => { this.dashboard = div }}>
         <div
           className={`image ${this.state.imageActive ? 'active' : ''}`}
           style={{backgroundImage: `url(/static/img/pieces/${this.state.selectedPiece.name}.jpg)`}}

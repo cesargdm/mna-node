@@ -28,14 +28,6 @@ class Login extends Component {
 
       this.props.router.push('/')
 
-      // Watson.login(name, email)
-      // .then(response => {
-      //   localStorage.setItem('email', email)
-      //   localStorage.setItem('name', name)
-      // })
-      // .catch(error => {
-      //   console.log(response)
-      // })
     }
 
   }
