@@ -85,8 +85,6 @@ class Artwork extends Component {
   }
 
   rateAnswer(answer, rate, index) {
-
-    console.log('INDEX', index)
     const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
 
     const email = localStorage.getItem('email')
@@ -104,9 +102,7 @@ class Artwork extends Component {
   }
 
   render() {
-
     const filteredMessages = this.props.chatHistory.filter(message => message.workspace_id == this.state.selectedPiece.workspace_id)
-    console.log(filteredMessages)
 
     return (
       <div className='dashboard'>

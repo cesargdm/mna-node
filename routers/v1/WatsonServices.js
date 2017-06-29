@@ -52,8 +52,6 @@ class WatsonServices {
       }
     }
 
-    console.log(question)
-
     return requestPromise(options)
 
   }

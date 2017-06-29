@@ -53,7 +53,8 @@ router.route('/talk')
 
 router.route('/rate-answer')
 .post((req, res) => {
-  const { email, question, answer, rate, workspace_id } = req.body
+  const { email, question, rate, workspace_id } = req.body
+  var answer = req.body.answer
 
   if (!email) {
     return res.status(400)
@@ -79,11 +80,11 @@ router.route('/rate-answer')
 
     const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
 
-    answer.split('\'').join('`')
+    // Remove ' character
+    answer = answer.split(`'`).join('')
 
     const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answer}',${rate},'${date}', '${workspace_id}')`
-
-    console.log('\nQUERY:', query)
+    console.log(query)
 
     db.open()
     .then((conn) => {
