@@ -30,7 +30,8 @@ gulp.task('sassDev', () =>
 
 // Possible duplicate?
 gulp.task('webpack', () =>
-  gulp.src(path.resolve('src/js/index.js'))
+  gulp.src([path.resolve('src/js/index.js'), path.resolve('src/js/service-worker.js')])
+      .pipe(named())
       .pipe(webpackStream(webpackConfig, webpack)) // Create sourcemaps for better debbuging
       .on('error', function handleError() {
         this.emit('end')
