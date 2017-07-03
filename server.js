@@ -21,11 +21,11 @@ app.use('/static', express.static(path.resolve('static'), {
 }))
 
 app.use('/manifest.json', express.static(path.resolve('manifest.json'), {
-  maxAge: 86400000
+  // maxAge: 86400000
 }))
 
 app.use('/dist', express.static(path.resolve('dist'), {
-  maxAge: 86400000
+  // maxAge: 86400000
 }))
 
 app.use('/v1', API_V1)

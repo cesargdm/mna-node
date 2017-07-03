@@ -1,10 +1,10 @@
 module.exports = {
   talk: {
-    user: '8e113478-787f-49d9-b37f-246cdedc13f3',
-    pass: 'LWTKHxEW5Mp4'
+    user: '216983cd-4d70-4d83-b4ce-116f150bc513',
+    pass: 'KCNzzqH3Ex3P'
   },
   answer: {
-    user: '8674f7ae-729b-4dfd-8076-93a1e6d68343',
-    pass: 'RMHGp1EwrEEo'
+    user: '0b29fcfa-60dd-41cb-baed-42d44afc5545',
+    pass: 'dF2t1bAoohR0'
   }
-};
+}
