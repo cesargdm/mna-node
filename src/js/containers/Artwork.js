@@ -57,13 +57,14 @@ class Artwork extends Component {
 
     const question = this.state.question
     const workspace_id = this.state.selectedPiece.workspace_id
+    const email = localStorage.getItem('email')
 
     this.props.dispatch(addMessage({ text: question, answer: false, workspace_id: this.state.selectedPiece.workspace_id }))
     this.setState({
       question: ''
     }, () => window.scrollTo(0,document.body.scrollHeight))
 
-    Watson.ask(question, workspace_id)
+    Watson.ask(question, workspace_id, email)
     .then(response => {
       const answer = response.data.answer
       if (answer == '' || !answer) return // Don't add message if there's an empty message

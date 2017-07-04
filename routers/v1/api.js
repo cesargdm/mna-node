@@ -109,16 +109,57 @@ router.route('/rate-answer')
 router.route('/answer')
 .post((req, res) => {
 
-  const { question, conversation_id, workspace_id } = req.body
+  const { question, conversation_id, email, workspace_id } = req.body
   const { user } = req.body
 
   WatsonServices.answer(question, conversation_id, workspace_id)
   .then(response => {
     const answer = response.output.text[0]
-    console.log(response)
+
     const conversation_id = response.context.conversation_id
 
-    return res.status(200).json({ answer, conversation_id })
+    if (email) {
+      const now = new Date()
+
+      var month = `${now.getUTCMonth()}`
+      month.split('').length < 2 ? month = `0${month}` : null
+
+      var seconds = `${now.getUTCSeconds()}`
+      seconds.split('').length < 2 ? seconds = `0${seconds}` : null
+
+      var minutes = `${now.getUTCMinutes()}`
+      minutes.split('').length < 2 ? minutes = `0${minutes}` : null
+
+      var hour = `${now.getUTCHours()}`
+      hour.split('').length < 2 ? hour = `0${hour}` : null
+
+      var day = `${now.getUTCDate()}`
+      day.split('').length < 2 ? day = `0${day}` : null
+
+      const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
+
+      // Remove ' character
+      answerCpy = answer.split(`'`).join('')
+
+      const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answerCpy}', NULL,'${date}', '${workspace_id}')`
+      console.log(query)
+
+      db.open()
+      .then((conn) => {
+        return db.execute(conn, query)
+      })
+      .then((conn, data) => {
+        console.log('SAVED QUESTION')
+        db.close(conn)
+      })
+      .catch((error) => {
+        console.log('ERROR', error)
+        db.close(conn)
+      })
+
+    }
+
+    res.status(200).json({ answer, conversation_id })
   })
   .catch(error => {
     console.log(error)

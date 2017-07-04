@@ -77,7 +77,7 @@ function initialPieces () {
       title: 'Friso Estucado',
       location: 'Sala Mexica',
       workspace_id: 'e2b7f5ad-eb36-4e45-a824-70e1af62e8be'
-    },
+    }
   ])
 }
 
