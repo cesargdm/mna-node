@@ -25,7 +25,7 @@ app.use('/manifest.json', express.static(path.resolve('manifest.json'), {
 }))
 
 app.use('/dist', express.static(path.resolve('dist'), {
-  // maxAge: 86400000
+  maxAge: 86400000
 }))
 
 app.use('/v1', API_V1)
