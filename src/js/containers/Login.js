@@ -43,6 +43,10 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
+        <div className="intro">
+          <h1>¿Quieres formar parte de la historia?</h1>
+          <h1>Regístrate y empieza a entrenar a Watson</h1>
+        </div>
         <form onSubmit={this.login}>
           <div id="ibm-inah"></div>
           <input
