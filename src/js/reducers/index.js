@@ -11,7 +11,55 @@ function shuffleArray(array) {
 }
 
 function initialPieces () {
-  return shuffleArray([
+  return [
+    {
+      name: 'friso-estucado',
+      title: 'Friso Estucado',
+      location: 'Sala Mexica',
+      workspace_id: 'e2b7f5ad-eb36-4e45-a824-70e1af62e8be'
+    },
+    {
+      name: 'piedra-tizoc',
+      title: 'Piedra de Tizoc',
+      location: 'Sala Maya',
+      workspace_id: 'e3fab98f-daaa-47d8-b4b4-dd65775f7f82'
+    },
+    {
+      name: 'ocelocuauhxicalli',
+      title: 'Ocelocuauhxicalli',
+      location: 'Sala Mexica',
+      workspace_id: '1e8f7277-c44c-4933-8ee7-bae318428a73'
+    },
+    {
+      name: 'coyolxauhqui',
+      title: 'Coyolxauhqui',
+      location: 'Sala Mexica',
+      workspace_id: '6c1de7f2-109e-48d6-9418-db2b58b31bde'
+    },
+    {
+      name: 'dintel-26',
+      title: 'Dintel 26',
+      location: 'Sala Maya',
+      workspace_id: '1ea9af05-c530-4e56-8c54-eaf95fb13f91'
+    },
+    {
+      name: 'tumba-de-pakal',
+      title: 'Tumba de Pakal',
+      location: 'Sala Maya',
+      workspace_id: '536e6b75-98d7-41ae-bbad-4f1d776e56a6'
+    },
+    {
+      name: 'mural-dualidad',
+      title: 'Mural Dualidad',
+      location: 'General',
+      workspace_id: '215266ea-264a-46ba-8cb9-3b01177c4a56'
+    },
+    {
+      name: 'chac-mool',
+      title: 'Chac-Mool',
+      location: 'Sala Maya',
+      workspace_id: 'e1ea6765-3399-4367-85e6-47425605f8b6'
+    },
     {
       name: 'piedra-del-sol',
       title: 'Piedra del Sol',
@@ -29,56 +77,8 @@ function initialPieces () {
       title: 'Penacho de Moctezuma',
       location: 'Sala Mexica',
       workspace_id: 'e151b746-d91c-480c-8137-5cce7294201d'
-    },
-    {
-      name: 'dintel-26',
-      title: 'Dintel 26',
-      location: 'Sala Maya',
-      workspace_id: '1ea9af05-c530-4e56-8c54-eaf95fb13f91'
-    },
-    {
-      name: 'tumba-de-pakal',
-      title: 'Tumba de Pakal',
-      location: 'Sala Maya',
-      workspace_id: '536e6b75-98d7-41ae-bbad-4f1d776e56a6'
-    },
-    {
-      name: 'chac-mool',
-      title: 'Chac-Mool',
-      location: 'Sala Maya',
-      workspace_id: 'e1ea6765-3399-4367-85e6-47425605f8b6'
-    },
-    {
-      name: 'mural-dualidad',
-      title: 'Mural Dualidad',
-      location: 'General',
-      workspace_id: '215266ea-264a-46ba-8cb9-3b01177c4a56'
-    },
-    {
-      name: 'coyolxauhqui',
-      title: 'Coyolxauhqui',
-      location: 'Sala Mexica',
-      workspace_id: '6c1de7f2-109e-48d6-9418-db2b58b31bde'
-    },
-    {
-      name: 'ocelocuauhxicalli',
-      title: 'Ocelocuauhxicalli',
-      location: 'Sala Mexica',
-      workspace_id: '1e8f7277-c44c-4933-8ee7-bae318428a73'
-    },
-    {
-      name: 'piedra-tizoc',
-      title: 'Piedra de Tizoc',
-      location: 'Sala Maya',
-      workspace_id: 'e3fab98f-daaa-47d8-b4b4-dd65775f7f82'
-    },
-    {
-      name: 'friso-estucado',
-      title: 'Friso Estucado',
-      location: 'Sala Mexica',
-      workspace_id: 'e2b7f5ad-eb36-4e45-a824-70e1af62e8be'
     }
-  ])
+  ]
 }
 
 function pieces(state = initialPieces(), action) {
