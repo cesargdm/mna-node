@@ -16,67 +16,67 @@ function initialPieces () {
       name: 'friso-estucado',
       title: 'Friso Estucado',
       location: 'Sala Mexica',
-      workspace_id: 'e2b7f5ad-eb36-4e45-a824-70e1af62e8be'
+      workspace_id: '36b526c1-e082-4805-9987-2adfaa82c81c'
     },
     {
       name: 'piedra-tizoc',
       title: 'Piedra de Tizoc',
       location: 'Sala Maya',
-      workspace_id: 'e3fab98f-daaa-47d8-b4b4-dd65775f7f82'
+      workspace_id: 'a8be1ed9-06ce-4f83-a3b3-caa844c8652a'
     },
     {
       name: 'ocelocuauhxicalli',
       title: 'Ocelocuauhxicalli',
       location: 'Sala Mexica',
-      workspace_id: '1e8f7277-c44c-4933-8ee7-bae318428a73'
+      workspace_id: 'd70bc353-b5dd-442c-9fdf-bd29348cea31'
     },
     {
       name: 'coyolxauhqui',
       title: 'Coyolxauhqui',
       location: 'Sala Mexica',
-      workspace_id: '6c1de7f2-109e-48d6-9418-db2b58b31bde'
+      workspace_id: 'f9ef9583-9983-4565-9ba3-c049728831a6'
     },
     {
       name: 'dintel-26',
       title: 'Dintel 26',
       location: 'Sala Maya',
-      workspace_id: '1ea9af05-c530-4e56-8c54-eaf95fb13f91'
+      workspace_id: '0af5181c-cee1-4aa1-9a9d-8afa70f69290'
     },
     {
       name: 'tumba-de-pakal',
       title: 'Tumba de Pakal',
       location: 'Sala Maya',
-      workspace_id: '536e6b75-98d7-41ae-bbad-4f1d776e56a6'
+      workspace_id: 'b4e9b2df-1073-44b7-a9f8-9dbe1117588e'
     },
     {
       name: 'mural-dualidad',
       title: 'Mural Dualidad',
       location: 'General',
-      workspace_id: '215266ea-264a-46ba-8cb9-3b01177c4a56'
+      workspace_id: '348f53b4-2538-4281-ae19-d98e6393ab14'
     },
     {
       name: 'chac-mool',
       title: 'Chac-Mool',
       location: 'Sala Maya',
-      workspace_id: 'e1ea6765-3399-4367-85e6-47425605f8b6'
+      workspace_id: '7547a3e5-c402-45a3-abd2-e75c6c8295a5'
     },
     {
       name: 'piedra-del-sol',
       title: 'Piedra del Sol',
       location: 'Sala Mexica',
-      workspace_id: '99d3e78d-8e38-448a-903b-d887c5bf3dd3'
+      workspace_id: '073ea817-fbef-4051-8f3e-5c4a164a3850'
     },
     {
       name: 'coatlicue',
       title: 'Coatlicue',
       location: 'Sala Mexica',
-      workspace_id: 'f46bba7b-6355-463a-aaa7-d51386612d50'
+      workspace_id: '43c62df1-4638-4583-b429-83391dd5b703'
     },
     {
       name: 'penacho-de-moctezuma',
       title: 'Penacho de Moctezuma',
       location: 'Sala Mexica',
-      workspace_id: 'e151b746-d91c-480c-8137-5cce7294201d'
+      workspace_id: 'dcc9709b-8188-4917-bab2-6d11d1f748ed'
     }
   ]
 }
