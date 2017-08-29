@@ -61,29 +61,29 @@ router.route('/rate-answer')
   }
 
   if (email) {
-    const now = new Date()
-
-    var month = `${now.getUTCMonth()}`
-    month.split('').length < 2 ? month = `0${month}` : null
-
-    var seconds = `${now.getUTCSeconds()}`
-    seconds.split('').length < 2 ? seconds = `0${seconds}` : null
-
-    var minutes = `${now.getUTCMinutes()}`
-    minutes.split('').length < 2 ? minutes = `0${minutes}` : null
-
-    var hour = `${now.getUTCHours()}`
-    hour.split('').length < 2 ? hour = `0${hour}` : null
-
-    var day = `${now.getUTCDate()}`
-    day.split('').length < 2 ? day = `0${day}` : null
-
-    const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
-
+    // const now = new Date()
+    //
+    // var month = `${now.getUTCMonth()}`
+    // month.split('').length < 2 ? month = `0${month}` : null
+    //
+    // var seconds = `${now.getUTCSeconds()}`
+    // seconds.split('').length < 2 ? seconds = `0${seconds}` : null
+    //
+    // var minutes = `${now.getUTCMinutes()}`
+    // minutes.split('').length < 2 ? minutes = `0${minutes}` : null
+    //
+    // var hour = `${now.getUTCHours()}`
+    // hour.split('').length < 2 ? hour = `0${hour}` : null
+    //
+    // var day = `${now.getUTCDate()}`
+    // day.split('').length < 2 ? day = `0${day}` : null
+    //
+    // const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
+    const date = `CURRENT_TIMESTAMP`
     // Remove ' character
     answer = answer.split(`'`).join('')
 
-    const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answer}',${rate},'${date}', '${workspace_id}')`
+    const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answer}',${rate},${date}, '${workspace_id}')`
     console.log(query)
 
     db.open()
@@ -119,29 +119,30 @@ router.route('/answer')
     const conversation_id = response.context.conversation_id
 
     if (email) {
-      const now = new Date()
-
-      var month = `${now.getUTCMonth()}`
-      month.split('').length < 2 ? month = `0${month}` : null
-
-      var seconds = `${now.getUTCSeconds()}`
-      seconds.split('').length < 2 ? seconds = `0${seconds}` : null
-
-      var minutes = `${now.getUTCMinutes()}`
-      minutes.split('').length < 2 ? minutes = `0${minutes}` : null
-
-      var hour = `${now.getUTCHours()}`
-      hour.split('').length < 2 ? hour = `0${hour}` : null
-
-      var day = `${now.getUTCDate()}`
-      day.split('').length < 2 ? day = `0${day}` : null
-
-      const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
+      // const now = new Date()
+      //
+      // var month = `${now.getUTCMonth()}`
+      // month.split('').length < 2 ? month = `0${month}` : null
+      //
+      // var seconds = `${now.getUTCSeconds()}`
+      // seconds.split('').length < 2 ? seconds = `0${seconds}` : null
+      //
+      // var minutes = `${now.getUTCMinutes()}`
+      // minutes.split('').length < 2 ? minutes = `0${minutes}` : null
+      //
+      // var hour = `${now.getUTCHours()}`
+      // hour.split('').length < 2 ? hour = `0${hour}` : null
+      //
+      // var day = `${now.getUTCDate()}`
+      // day.split('').length < 2 ? day = `0${day}` : null
+      //
+      // const date = `${now.getUTCFullYear()}-${month}-${day} ${hour}:${minutes}:${seconds}`
+      const date = `CURRENT_TIMESTAMP`
 
       // Remove ' character
       answerCpy = answer.split(`'`).join('')
 
-      const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answerCpy}', NULL,'${date}', '${workspace_id}')`
+      const query = `INSERT INTO FEEDBACK(USERNAME, QUESTION, ANSWER, FEEDBACK, DATE_TIME, WORKSPACE_ID) values ('${email}','${question}','${answerCpy}', NULL,${date}, '${workspace_id}')`
       console.log(query)
 
       db.open()
